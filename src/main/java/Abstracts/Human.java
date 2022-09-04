@@ -99,13 +99,15 @@ public class Human {
 
     public String toString() {
         if (iq == 0 && schedule == null) {
-            return "com.company.Abstracts.Human{" +
+            return "{" +
                     "name='" + name + '\'' +
                     ", surname='" + surname + '\'' +
                     ", year=" + getDateString(birthDate) +
+                    ", iq = 0" +
+                    ", schedule=null" +
                     '}';
         }
-        return "com.company.Abstracts.Human{" +
+        return "{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", year=" + getDateString(birthDate) +

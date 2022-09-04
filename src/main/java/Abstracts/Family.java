@@ -1,9 +1,8 @@
 package Abstracts;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import Abstracts.Humans.Women;
+
+import java.util.*;
 
 public class Family {
     private Human mother;
@@ -70,33 +69,16 @@ public class Family {
     public void setPets(Set<Pet> pets) {
         this.pets = pets;
     }
+    public void addPet(Pet pet){
+        if(pets==null){
+            this.pets = new HashSet<>();
+        }
+        this.pets.add(pet);
+    }
 
     @Override
     public String toString() {
-        if (getPets() == null && getChildren().size() == 0) {
-            return "com.company.Abstracts.Family{" +
-                    "mother=" + mother.getName() + " " + mother.getSurname() +
-                    ", father=" + father.getName() + " " + father.getSurname() +
-                    '}';
-        } else if (getPets() != null && getChildren().size() == 0) {
-            return "com.company.Abstracts.Family{" +
-                    "mother=" + mother.getName() + " " + mother.getSurname() +
-                    ", father=" + father.getName() + " " + father.getSurname() +
-                    ",\n pet=" + pets +
-                    '}';
-        } else if (getPets() == null && getChildren().size() != 0) {
-            return "com.company.Abstracts.Family{" +
-                    "mother=" + mother.getName() + " " + mother.getSurname() +
-                    ", father=" + father.getName() + " " + father.getSurname() +
-                    ",\n children=" + children +
-                    '}';
-        }
-        return "com.company.Abstracts.Family{" +
-                "mother=" + mother.getName() + " " + mother.getSurname() +
-                ", father=" + father.getName() + " " + father.getSurname() +
-                ",\n children=" + children +
-                ",\n pet=" + pets +
-                '}';
+        return prettyFormat();
     }
 
     @Override
@@ -117,6 +99,21 @@ public class Family {
         System.out.println(this + " object collected by Garbage Collector");
     }
 
+    public String prettyFormat() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Family:\n");
+        sb.append("\tmother: " + mother + ",\n");
+        sb.append("\tfather: " + father + ",\n");
+        sb.append("\tchildren:\n");
+        for (Human child : children) {
+            if (child instanceof Women)
+                sb.append("\t\tgirl: " + child + "\n");
+            else
+                sb.append("\t\tboy: " + child + "\n");
+        }
+        sb.append("\tpets: "+pets +"\n");
+        return sb.toString();
 
+    }
 }
 

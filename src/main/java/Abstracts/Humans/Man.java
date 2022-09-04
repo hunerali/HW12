@@ -15,7 +15,9 @@ public final class Man extends Human {
     public Man(String name, String surname, Long year, int iq, Map<DayOfWeeks, String> schedule, Family family) {
         super(name, surname, year, iq, schedule, family);
     }
-
+    public Man(String name, String surname, String date, int iq){
+        super(name, surname, date, iq);
+    }
     public Man() {
     }
 

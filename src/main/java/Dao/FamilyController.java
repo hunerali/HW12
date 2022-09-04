@@ -3,6 +3,7 @@ package Dao;
 import Abstracts.Family;
 import Abstracts.Human;
 import Abstracts.Pet;
+import Abstracts.exception.FamilyOverflowException;
 
 import java.util.List;
 import java.util.Set;
@@ -48,11 +49,15 @@ public class FamilyController {
     }
 
     public Family bornChild(Family family, String type) {
-        return familyService.bornChild(family, type);
+        if (family.countFamily()<=12)
+            return familyService.bornChild(family, type);
+       throw new  FamilyOverflowException("besdi dayanin");
     }
 
     public Family adoptChild(Family family, Human human) {
-        return familyService.adoptChild(family, human);
+        if (family.countFamily()<=12)
+            return familyService.adoptChild(family, human);
+        throw new  FamilyOverflowException("yeter artiq");
     }
 
     public void addPet(int index, Pet pet) {
